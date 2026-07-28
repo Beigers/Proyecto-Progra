@@ -9,5 +9,6 @@ package com.mycompany.proyecto.progra.Enum;
  * @author Lenovo ThinkPad
  */
 public enum Rol_Usuario {
-    
+    CLIENTE,
+    ADMINISTRADOR
 }
