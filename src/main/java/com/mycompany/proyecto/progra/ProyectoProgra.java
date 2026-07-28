@@ -11,6 +11,6 @@ package com.mycompany.proyecto.progra;
 public class ProyectoProgra {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }
