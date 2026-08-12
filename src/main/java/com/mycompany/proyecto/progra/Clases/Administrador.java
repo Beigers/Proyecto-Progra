@@ -10,15 +10,18 @@ public class Administrador {
 
     private String nombre;
     private String correo;
+    private String contrasena;
     private Rol_Usuario rol;
     private double tarifaSemana;
     private double tarifaFinSemana;
 
-    public Administrador(String pNombre, String pCorreo, Rol_Usuario pRol,
-            double pTarifaSemana, double pTarifaFinSemana) {
-
+    public Administrador(String pNombre, String pCorreo,
+        String pContrasena, Rol_Usuario pRol,
+        double pTarifaSemana, double pTarifaFinSemana) {
+        
         nombre = pNombre;
         correo = pCorreo;
+        contrasena = pContrasena;
         rol = pRol;
         tarifaSemana = pTarifaSemana;
         tarifaFinSemana = pTarifaFinSemana;
@@ -45,6 +48,14 @@ public class Administrador {
 
     public void setCorreo(String pCorreo) {
         correo = pCorreo;
+    }
+    
+    public String getContrasena() {
+        return contrasena;
+    }
+    
+    public void setContrasena(String pContrasena) {
+        contrasena = pContrasena;
     }
 
     public Rol_Usuario getRol() {
