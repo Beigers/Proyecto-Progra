@@ -10,4 +10,30 @@ package com.mycompany.proyecto.progra.Clases;
  */
 public class EspacioParqueo {
     
+    private int id_Espacio;
+    private boolean disponible;
+
+    public EspacioParqueo(int id_Espacio, boolean disponible) {
+        this.id_Espacio = id_Espacio;
+        this.disponible = disponible;
+    }
+
+    public int getId_Espacio() {
+        return id_Espacio;
+    }
+
+    public void setId_Espacio(int id_Espacio) {
+        this.id_Espacio = id_Espacio;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+    
+    
+    
 }

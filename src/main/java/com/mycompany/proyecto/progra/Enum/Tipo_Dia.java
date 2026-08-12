@@ -9,5 +9,7 @@ package com.mycompany.proyecto.progra.Enum;
  * @author Lenovo ThinkPad
  */
 public enum Tipo_Dia {
+    ENTRE_SEMANA,
+    FIN_DE_SEMANA;
     
 }

@@ -10,5 +10,5 @@ package com.mycompany.proyecto.progra.Enum;
  */
 public enum Rol_Usuario {
     CLIENTE,
-    ADMINISTRADOR
+    ADMINISTRADOR;
 }

@@ -10,4 +10,8 @@ package com.mycompany.proyecto.progra.Enum;
  */
 public enum Estado_Espacio {
     
+    LIBRE,
+    OCUPADO,
+    RESERVADO;
+    
 }

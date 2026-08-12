@@ -9,5 +9,8 @@ package com.mycompany.proyecto.progra.Enum;
  * @author Lenovo ThinkPad
  */
 public enum Metodo_Pago {
+    SINPE,
+    EFECTIVO,
+    TARJETA;
     
 }
