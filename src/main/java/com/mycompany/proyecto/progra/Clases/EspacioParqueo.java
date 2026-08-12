@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyecto.progra.Clases;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo ThinkPad
@@ -34,6 +36,25 @@ public class EspacioParqueo {
         this.disponible = disponible;
     }
     
+    public boolean verificarDisponibilidad() {
+        return disponible;
+    }
+
+    public void ocuparEspacio() {
+        this.disponible = false;
+    }
+
+    public void liberarEspacio() {
+        this.disponible = true;
+    }
+
+    public void mostrarDetalle() {
+        String estadoTexto = disponible ? "DISPONIBLE" : "OCUPADO";
+        String mensaje = "=== Reporte Espacio Parqueo ===\n" +
+                         "Número de espacio: #" + id_Espacio + "\n" +
+                         "Estado actual: " + estadoTexto;
+
+        JOptionPane.showMessageDialog(null, mensaje);
     
-    
+}
 }
