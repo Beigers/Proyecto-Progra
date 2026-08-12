@@ -43,7 +43,7 @@ public class EspacioParqueo {
     }
     
     public boolean verificarDisponibilidad() {
-        if (estado == EstadoParqueo.LIBRE) {
+        if (disponibilidad == Estado_Espacio.LIBRE) {
             return true;
         } else {
             return false;
