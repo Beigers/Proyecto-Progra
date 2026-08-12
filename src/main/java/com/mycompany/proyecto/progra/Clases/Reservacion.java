@@ -10,4 +10,7 @@ package com.mycompany.proyecto.progra.Clases;
  */
 public class Reservacion {
     
+    private int id_Reservacion;
+    private String nombre_Cliente;
+    
 }
