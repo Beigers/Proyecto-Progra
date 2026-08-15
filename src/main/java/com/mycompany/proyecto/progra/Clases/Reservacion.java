@@ -112,7 +112,7 @@ public class Reservacion {
     public String toString() {
         String nombre_Usuario = null;
         if(usuario != null) {
-            nombre_Usuario = vehiculo.getNombre();
+            nombre_Usuario = usuario.getNombre();
             
         }
         
@@ -123,8 +123,21 @@ public class Reservacion {
         }
         
         String id_Espacio = null;
-        if(estado_espacio != )
+        if(estado_espacio != null ) {
+            id_Espacio = String.valueOf(estado_espacio);
+        }
         
+        return "Reservacion{" +
+                "idReservacion='" + id_Reservacion + '\'' +
+                ", usuario=" + usuario +
+                ", vehiculo=" + vehiculo +
+                ", espacioParqueo=" + id_Espacio +
+                ", horaEntrada='" + hora_entrada + '\'' +
+                ", horaSalida='" + hora_salida + '\'' +
+                ", tipoDia=" + tipo_dia +
+                ", montoTotal=" + monto_Total +
+                ", activa=" + activa +
+                '}';
         
         
         
