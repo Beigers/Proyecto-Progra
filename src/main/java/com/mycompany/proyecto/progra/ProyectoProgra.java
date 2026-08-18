@@ -10,6 +10,7 @@ package com.mycompany.proyecto.progra;
 
 import com.mycompany.proyecto.progra.Clases.Administrador;
 import com.mycompany.proyecto.progra.Clases.EspacioParqueo;
+import com.mycompany.proyecto.progra.Clases.Pago;
 import com.mycompany.proyecto.progra.Clases.Reporte;
 import com.mycompany.proyecto.progra.Clases.Reservacion;
 import com.mycompany.proyecto.progra.Clases.Usuario;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 
 public class ProyectoProgra {
 
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
  
         int capacidadEspacios = 30;
@@ -85,7 +87,7 @@ public class ProyectoProgra {
                 JOptionPane.showMessageDialog(null, "Bienvenido cliente.\n" + usuarioCliente.mostrarDatos());
 
                 boolean volverCliente = false;
-                String[] opcionesCliente = {"Registrar vehiculo", "Crear reservacion", "Procesar pago", "Mostrar reporte", "Salir"};
+                String[] opcionesCliente = {"Registrar vehiculo", "Crear reservacion", "Procesar pago", "Salir"};
 
                 while (!volverCliente) {
                     int seleccionCliente = JOptionPane.showOptionDialog(null,
@@ -390,42 +392,18 @@ public class ProyectoProgra {
                                     metodoPago = Metodo_Pago.TARJETA;
                                 }
 
-                                double iva = montoBase * 0.13;
-                                double total = montoBase + iva;
-
+                                Pago nuevoPago = new Pago(placa, montoBase, metodoPago);
+                                
                                 if (indiceReservacion != -1) {
                                     reservacionPagada[indiceReservacion] = true;
                                 } else {
                                     vehiculoPagado[indiceVehiculo] = true;
                                 }
-
-                                ingresosTotales = ingresosTotales + total;
-
-                                String factura = "----------- FACTURA -----------\n"
-                                        + "Placa: " + placa + "\n"
-                                        + "Metodo de pago: " + metodoPago + "\n"
-                                        + "Monto: " + montoBase + "\n"
-                                        + "IVA (13%): " + iva + "\n"
-                                        + "Total: " + total + "\n"
-                                        + "--------------------------------";
-
-                                JOptionPane.showMessageDialog(null, factura);
+                               ingresosTotales = ingresosTotales + nuevoPago.getTotal();
+                               
+                               JOptionPane.showMessageDialog(null, nuevoPago.generarFactura());
                             }
                         }
-
-                    } else if (seleccionCliente == 3) {
-
-                        int espaciosOcupados = 0;
-                        for (int i = 0; i < capacidadEspacios; i++) {
-                            if (espacios[i].getDisponibilidad() == Estado_Espacio.OCUPADO
-                                    || espacios[i].getDisponibilidad() == Estado_Espacio.RESERVADO) {
-                                espaciosOcupados = espaciosOcupados + 1;
-                            }
-                        }
-
-                        Reporte reporte = new Reporte(capacidadEspacios, espaciosOcupados, ingresosTotales);
-                        reporte.mostrarReporte();
-
                     } else {
                         volverCliente = true;
                     }
@@ -434,7 +412,39 @@ public class ProyectoProgra {
             
             // MENU ADMINISTRADOR //
             } else if (seleccionRol == 1) {
+                String[] correosAdmin = {
+                "bacuna00938@ufide.ac.cr",
+                "mbrenes10729@ufide.ac.cr",
+                "bsiles50891@ufide.ac.cr",
+                "ebolanos00168@ufide.ac.cr"
+                };
+                String[] clavesAdmin = {
+                "admin1",
+                "admin2",
+                "admin3",
+                "admin4"
+                };
+                
+                String correoIngresado = JOptionPane.showInputDialog(null, "Ingrese su correo de administrador:");
+    
+    if (correoIngresado != null) {
+        String claveIngresada = JOptionPane.showInputDialog(null, "Ingrese su contraseña:");
 
+        if (claveIngresada != null) {
+            
+            // 3. Verificar si el correo y la clave coinciden con algún perfil
+            boolean accesoConcedido = false;
+
+            for (int i = 0; i < correosAdmin.length; i++) {
+                if (correoIngresado.equals(correosAdmin[i])) {
+                    if (claveIngresada.equals(clavesAdmin[i])) {
+                        accesoConcedido = true;
+                    }
+                }
+            }
+
+            if (accesoConcedido == true) {
+                
                 JOptionPane.showMessageDialog(null, "Bienvenido administrador.\n" + administrador.mostrarDatos());
 
                 boolean volverAdmin = false;
@@ -564,12 +574,17 @@ public class ProyectoProgra {
                         volverAdmin = true;
                     }
                 } while (!volverAdmin);
-
-           
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas. Acceso denegado.", "Error de Autenticación", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
             } else {
                 salirSistema = true;
                 JOptionPane.showMessageDialog(null, "Gracias por usar el sistema de Parqueo 'El Descanso'.");
             }
+            
         } while (!salirSistema);
     }
 }
