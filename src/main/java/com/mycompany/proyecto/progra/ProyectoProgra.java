@@ -248,30 +248,6 @@ public class ProyectoProgra {
                                     }
                                 }
 
-                                String textoPersonas = JOptionPane.showInputDialog(null, "Ingrese la cantidad de personas:", "1");
-                                int personas = 1;
-                                if (textoPersonas != null) {
-                                    textoPersonas = textoPersonas.trim();
-                                    boolean esValidoPersonas = true;
-                                    int cantidadDigitosPersonas = 0;
-                                    int j = 0;
-                                    while (j < textoPersonas.length() && esValidoPersonas) {
-                                        char caracter = textoPersonas.charAt(j);
-                                        if (Character.isDigit(caracter)) {
-                                            cantidadDigitosPersonas = cantidadDigitosPersonas + 1;
-                                        } else {
-                                            esValidoPersonas = false;
-                                        }
-                                        j = j + 1;
-                                    }
-                                    if (esValidoPersonas && cantidadDigitosPersonas > 0) {
-                                        personas = Integer.parseInt(textoPersonas);
-                                        if (personas <= 0) {
-                                            personas = 1;
-                                        }
-                                    }
-                                }
-
                                 String horaEntrada = JOptionPane.showInputDialog(null, "Ingrese la hora de entrada (ej: 8:00 am):");
                                 if (horaEntrada == null) {
                                     horaEntrada = "No indicada";
@@ -296,7 +272,7 @@ public class ProyectoProgra {
                                 if (espacioLibre == null) {
                                     JOptionPane.showMessageDialog(null, "No hay espacios disponibles para reservar.");
                                 } else {
-                                    double montoBase = tarifaPorNoche * noches * personas;
+                                    double montoBase = tarifaPorNoche * noches ;
 
                                     Vehiculo vehiculoReserva = new Vehiculo(placa, "PENDIENTE", 0);
                                     String idReservacion = "R" + (cantidadReservaciones + 1);
@@ -316,7 +292,7 @@ public class ProyectoProgra {
                                     JOptionPane.showMessageDialog(null, "Reservacion creada con exito.\n"
                                             + "Espacio asignado: #" + espacioLibre.getId_Espacio() + "\n"
                                             + "Tipo de dia: " + tipoDia + "\n"
-                                            + "Noches: " + noches + " - Personas: " + personas + "\n"
+                                            + "Noches: " + noches + "\n"
                                             + "Monto (sin IVA): " + montoBase + "\n"
                                             + "IVA estimado (13%): " + ivaEstimado + "\n"
                                             + "Total estimado: " + totalEstimado);
@@ -334,7 +310,6 @@ public class ProyectoProgra {
                         } else {
                             placa = placa.trim().toUpperCase();
 
-                            // ---- Buscar reservacion pendiente (ciclo WHILE) ----
                             int indiceReservacion = -1;
                             boolean encontradaReservacion = false;
                             int r = 0;
@@ -346,7 +321,6 @@ public class ProyectoProgra {
                                 r = r + 1;
                             }
 
-                            // ---- Buscar vehiculo pendiente (ciclo WHILE), solo si no hay reservacion ----
                             int indiceVehiculo = -1;
                             if (indiceReservacion == -1) {
                                 boolean encontradoVehiculo = false;
